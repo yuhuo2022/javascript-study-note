@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 函数表达式
+	let fn = function (x, y) {
+		console.log('函数表达式');
+		return x + y;
+	}
+	console.log(fn);
+	fn(1, 2);
+
+	// 立即执行函数
+	(function () {
+		let num = 1;
+		console.log(num);
+	})();
+
+	(function (x, y) {
+		let num = 2;
+		console.log(num);
+		return x + y;
+	})(1, 2);
+
+	// 立即执行函数的另一种写法
+	(function () {
+		console.log('这也是立即执行函数');
+	}());
+</script>
+</body>
+</html>

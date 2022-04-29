@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let t = '12';
+	let f = 8;
+
+	// 显式将字符串 12 转换成数值 12
+	t = Number(t);
+
+	// 检测转换后的类型
+	console.log(typeof t); // => number
+	console.log(t + f); // => 20
+
+	// 并不是所有的值都可以被转成数值类型
+	let str = 'hello';
+	// 将 hello 转成数值是不现实的，当无法转换成
+	// 数值时，得到的结果为 NaN （Not a Number）
+	console.log(Number(str)); // => NaN
+
+	console.log(parseInt('12px')); // => 12
+	console.log(parseInt('12.5px')); // => 12
+	console.log(parseFloat('12.5px')); // => 12.5
+	console.log(parseFloat('12.6px')); // => 12.6
+
+	// 除了‘’、0、undefined、null、false、NaN转为布尔值都是false，其余都是true
+	console.log(Boolean(''));
+	console.log(Boolean(0));
+</script>
+</body>
+</html>

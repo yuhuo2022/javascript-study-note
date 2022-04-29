@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function fn(x, y) {
+		x = x || 0;
+		y = y || 0;
+		console.log(x + y);
+	}
+
+	fn();
+
+	let age = 18;
+	console.log(false && age++); // &&左边为假，age++不执行
+	console.log(11 && 22); // &&左右都为真，返回最后一个真值
+	console.log(11 || age++); // ||左边为真，age++ 也不执行，返回第一个真值.两个都是假，返回最后一个假值
+	console.log(age);
+</script>
+</body>
+</html>

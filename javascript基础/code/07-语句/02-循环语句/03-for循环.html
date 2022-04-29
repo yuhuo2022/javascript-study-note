@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	for (let i = 0; i < 10; i++) {
+		document.write(`i的值:${i}<br>`);
+	}
+	const arr = ['苏白', '苏谦', '白灿灿', '白瑾'];
+	// for (let i = 0; i <= arr.length - 1; i++) {
+	// 	console.log(arr[i]);
+	// }
+	for (let i = 0; i <= arr.length - 1; i++) {
+		if (arr[i] === '白灿灿') {
+			// continue; // 退出本次循环，continue后的语句不在执行
+			break; // 结束循环
+		}
+		console.log(arr[i]);
+	}
+</script>
+</body>
+</html>

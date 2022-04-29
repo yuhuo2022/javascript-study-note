@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let year = prompt('请输入年份，如：2022');
+	let mouth = +prompt('请输入月份，如：1');
+	let day = '';
+	switch (mouth) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			day = 31;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			day = 30;
+			break;
+		case 2:
+			if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+				day = 29;
+			} else {
+				day = 28;
+			}
+			break;
+		default:
+			document.write('<h1>输入有误，请重新输入</h1>');
+	}
+	document.write(`<h1>${year}年${mouth}月有${day}天</h1>`);
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function getRandom(m, n) {
+		return Math.floor(Math.random() * (m - n + 1)) + n;
+	}
+
+	let random = getRandom(1, 10);
+	let flag = true;
+	for (let i = 1; i <= 3; i++) {
+		let num = +prompt('请输入1~10之间的数字');
+		if (num > random) {
+			alert(num + '大了大了');
+		} else if (num < random) {
+			alert(num + '小了小了');
+		} else {
+			flag = false;
+			alert(num + '你猜对了');
+			break;
+		}
+	}
+	if (flag) {
+		alert('您的次数已用完');
+	}
+</script>
+</body>
+</html>

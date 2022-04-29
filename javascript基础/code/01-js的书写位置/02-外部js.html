@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<!-- 外部形式：通过 script 的 src 属性引入独立的 .js 文件 -->
+<script src="./js/my.js">
+	// 引入了外部js文件的script标签中不能再写js代码，写了也会被忽略
+	// 此处的代码会被忽略掉！！！！
+	alert(666);
+</script>
+</body>
+</html>

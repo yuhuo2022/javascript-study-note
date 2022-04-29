@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 声明对象
+	let age = prompt('请输入年龄');
+	let obj = {
+		uname: '苏白',
+		// age: age,
+		// 属性名与属性值一样，可以简写
+		age,
+		gender: '男',
+		eat: function () {
+			console.log('吃饭');
+		},
+		// 方法简写:省略冒号和function关键字
+		sayHi() {
+			console.log('嗨');
+		}
+	}
+	console.log(obj);
+</script>
+</body>
+</html>

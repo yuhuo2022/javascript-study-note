@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	function handleData(arr, flag = true) {
+		let sum = 0;
+		for (let i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		if (flag) {
+			return `数组和：${sum}`;
+		} else {
+			let avg = sum / arr.length;
+			return `平均值：${avg}`;
+		}
+	}
+
+	console.log(handleData([1, 2, 3], true));
+	console.log(handleData([1, 2, 3], false));
+	console.log(handleData([1, 2, 3]));
+</script>
+</body>
+</html>

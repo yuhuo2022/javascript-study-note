@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	/**
+	 * 求两个数之间的累加和
+	 * @param start  默认值0
+	 * @param end  默认值0
+	 */
+	// 函数定义时的参数是形式上的参数（形参）
+	// start = 0, end = 0 形参默认值
+	function getSum(start = 0, end = 0) {
+		let sum = 0;
+		for (let i = start; i <= end; i++) {
+			sum += i;
+		}
+		console.log(sum);
+	}
+
+	getSum(50, 100); // 函数调用传入的是实际参数（实参）
+	getSum();
+	let start = +prompt('请输入起始值：');
+	let end = +prompt('请输入结束值：');
+	getSum(start, end); // 实参可以是变量
+</script>
+</body>
+</html>

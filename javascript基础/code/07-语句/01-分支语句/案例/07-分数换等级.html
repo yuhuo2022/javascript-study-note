@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		h1 {
+			margin: 300px auto;
+			text-align: center;
+			font-size: 100px;
+			color: #F00;
+		}
+	</style>
+</head>
+<body>
+<script>
+	let score = +prompt('请输入正确的分数[0,150]：');
+	if (score >= 90) {
+		document.write('<h1>A</h1>');
+	} else if (score >= 80) {
+		document.write('<h1>B</h1>');
+	} else if (score >= 70) {
+		document.write('<h1>C</h1>');
+	} else if (score >= 60) {
+		document.write('<h1>D</h1>');
+	} else {
+		document.write('<h1>E</h1>');
+	}
+</script>
+</body>
+</html>

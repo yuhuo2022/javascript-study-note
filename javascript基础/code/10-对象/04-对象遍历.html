@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let obj = {
+		uname: '苏白',
+		age: 24,
+		gender: '男',
+		eat: function () {
+			console.log('吃饭');
+		},
+		sayHi() {
+			console.log('嗨');
+		}
+	}
+	for (let objKey in obj) {
+		// objKey是属性名
+		// console.log(objKey); // => 'uname'...
+
+		console.log(obj[objKey]);
+	}
+</script>
+</body>
+</html>

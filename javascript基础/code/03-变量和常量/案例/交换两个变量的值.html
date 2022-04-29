@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let num1 = 10;
+	let num2 = 20;
+	console.log('num1:' + num1, 'num2:' + num2);
+
+	// 声明一个临时变量temp，并将num1赋值给temp
+	let temp = num1;
+	// 把num2的值赋值给num1
+	num1 = num2;
+	// 把temp的值赋给num2
+	num2 = temp;
+
+	console.log('num1:' + num1, 'num2:' + num2);
+</script>
+</body>
+</html>

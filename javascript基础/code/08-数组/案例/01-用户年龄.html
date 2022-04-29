@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let ages = [];
+	while (ages.length < 5) {
+		let age = +prompt('请输入有效年龄[0-125]:');
+		if (age >= 0 && age <= 125) ages.push(age);
+	}
+	console.log(`输入年龄组：${ages}`);
+	let totalAges = 0;
+	let adults = [];
+	for (let i = 0; i < ages.length; i++) {
+		// 筛选成年人
+		if (ages[i] >= 18) {
+			adults.push(ages[i]);
+		}
+	}
+	console.log(`成年人：${adults}`);
+	// 总年龄
+	for (let i = 0; i < ages.length; i++) {
+		totalAges += ages[i];
+	}
+	// 平均年龄
+	let averageAge = Math.floor(totalAges / ages.length);
+	console.log(`年龄总和：${totalAges}`);
+	console.log(`平均年龄：${averageAge}`);
+	let max = ages[0];
+	let min = ages[0];
+	for (let i = 0; i < ages.length; i++) {
+		max = max >= ages[i] ? max : ages[i];
+		min = min <= ages[i] ? min : ages[i];
+	}
+	console.log(`最大年龄${max}，最小年龄${min}`);
+</script>
+</body>
+</html>

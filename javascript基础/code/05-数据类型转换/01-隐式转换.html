@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let num = 13;// 数值
+	let num2 = '2'; // 字符串
+	// 结果为 132
+	// 原因是将数值 num 转换成了字符串，相当于 '13'
+	// 然后 + 将两个字符串拼接到了一起
+	console.log(num + num2); // '132'
+
+	// 结果为 11
+	// 原因是将字符串 num2 转换成了数值，相当于 2
+	// 然后数值 13 减去 数值 2
+	console.log(num - num2); // 11
+	console.log(num * num2); // 26
+
+	let a = +prompt('请输入一个数字');
+	let b = +prompt('请再输入一个数字');
+	console.log(typeof a, typeof b);  // number
+	console.log(a + b);
+</script>
+</body>
+</html>

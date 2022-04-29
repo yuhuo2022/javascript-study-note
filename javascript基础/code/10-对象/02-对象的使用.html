@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	let obj = {
+		uname: '苏白',
+		age: 24,
+		gender: '男'
+	}
+
+	// 获取属性值
+	console.log(obj.uname); // => 苏白
+	console.log(obj['age']); // => 24
+
+	// 修改属性值
+	obj.age = 25;
+	console.log(obj); // => {uname: '苏白', age: 25, gender: '男'}
+
+	// 添加属性
+	obj.hobby = '阅读';
+	console.log(obj); // => {uname: '苏白', age: 25, gender: '男', hobby: '阅读'}
+
+	// 删除属性，新语法和严格模式下不允许之间删
+	delete obj.gender;
+	console.log(obj); // => {uname: '苏白', age: 25, hobby: '阅读'}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		h1 {
+			margin: 300px auto;
+			text-align: center;
+		}
+
+		span {
+			font-size: 50px;
+			color: #FF0000;
+		}
+	</style>
+</head>
+<body>
+<script>
+	// 用户输入一个数，  计算 1 到这个数的和。
+	let num = +prompt('请输入一个正整数：');
+	let i = 1;
+	let sum = 0;
+	while (i <= num) {
+		sum += i;
+		i++;
+	}
+	document.write(`<h1>计算1到${num}的和:<span>${sum}</span></h1>`);
+</script>
+</body>
+</html>
