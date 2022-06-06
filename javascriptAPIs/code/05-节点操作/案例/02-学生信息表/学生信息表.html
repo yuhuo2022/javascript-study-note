@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>学生信息管理</title>
+	<link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<h1>新增学员</h1>
+<form autocomplete="off" class="info">
+	<label>
+		姓名：
+		<input class="uname" name="uname" type="text" />
+	</label>
+	<label>
+		年龄：
+		<input class="age" name="age" type="text" />
+	</label>
+	<label>
+		性别:
+		<select class="gender" name="gender">
+			<option value="男">男</option>
+			<option value="女">女</option>
+		</select>
+	</label>
+	<label>
+		薪资：
+		<input class="salary" name="salary" type="text" />
+	</label>
+	<label>
+		就业城市：
+		<select class="city" name="city">
+			<option value="北京">北京</option>
+			<option value="上海">上海</option>
+			<option value="广州">广州</option>
+			<option value="深圳">深圳</option>
+			<option value="曹县">曹县</option>
+		</select>
+	</label>
+	<button class="add">录入</button>
+</form>
+
+<h1>就业榜</h1>
+<table>
+	<thead>
+	<tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>性别</th>
+		<th>薪资</th>
+		<th>就业城市</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!--
+		<tr>
+			<td>1001</td>
+			<td>欧阳霸天</td>
+			<td>19</td>
+			<td>男</td>
+			<td>15000</td>
+			<td>上海</td>
+			<td>
+				<a href="javascript:">删除</a>
+			</td>
+		</tr>
+		-->
+	</tbody>
+</table>
+<script>
+	const info = document.querySelector('.info');
+	const uname = document.querySelector('.uname');
+	const age = document.querySelector('.age');
+	const gender = document.querySelector('.gender');
+	const salary = document.querySelector('.salary');
+	const city = document.querySelector('.city');
+	const tbody = document.querySelector('tbody');
+	const items = document.querySelectorAll('[name]');
+	let arr = [];
+	// 表单提交
+	info.addEventListener('submit', function (e) {
+		// 阻止默认跳转
+		e.preventDefault();
+		// 验证表单，不通过就停止
+		for (let i = 0; i < items.length; i++) {
+			if (items[i].value.trim() === '') {
+				return alert('内容不能为空');
+			}
+		}
+		// 用户信息对象
+		const userObj = {
+			stuId: arr.length + 1,
+			uname: uname.value,
+			age: age.value,
+			gender: gender.value,
+			salary: salary.value,
+			city: city.value
+		}
+		// 用户对象添加到数组
+		arr.push(userObj);
+		// 清空表单
+		this.reset();
+		// 调用渲染函数
+		render();
+	});
+
+	// 渲染函数
+	function render() {
+		// 清空表格
+		tbody.innerHTML = '';
+		// 遍历数组
+		for (let i = 0; i < arr.length; i++) {
+			// 生成tr
+			const tr = document.createElement('tr');
+			tr.innerHTML = `
+			<td>${arr[i].stuId}</td>
+			<td>${arr[i].uname}</td>
+			<td>${arr[i].age}</td>
+			<td>${arr[i].gender}</td>
+			<td>${arr[i].salary}</td>
+			<td>${arr[i].city}</td>
+			<td>
+				<a href="javascript:" data-id="${i}">删除</a>
+			</td>
+			`;
+			// 追加元素
+			tbody.appendChild(tr);
+		}
+	}
+
+	// 删除数据
+	tbody.addEventListener('click', function (e) {
+		// 事件委托
+		if (e.target.tagName === 'A') {
+			// 通过自定义属性删除对应数据
+			arr.splice(~~(e.target.dataset.id), 1);
+			// 重新渲染
+			render();
+		}
+	});
+
+</script>
+</body>
+</html>

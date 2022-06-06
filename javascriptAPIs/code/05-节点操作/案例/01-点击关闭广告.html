@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.ad {
+			position: relative;
+			width: 300px;
+			height: 300px;
+			margin: 200px auto;
+			background-color: #0FF;
+			line-height: 300px;
+			font-size: 20px;
+			text-align: center;
+			box-sizing: border-box;
+		}
+
+		.close {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			background-color: #FF00FF;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<div class="ad">
+	<span>这是一个广告</span>
+	<div class="close">X</div>
+</div>
+<div class="ad">
+	<span>这是一个广告</span>
+	<div class="close">X</div>
+</div>
+<div class="ad">
+	<span>这是一个广告</span>
+	<div class="close">X</div>
+</div>
+<script>
+	// const close = document.querySelector('.close');
+	// close.addEventListener('click', function () {
+	// 	this.parentNode.style.display = 'none';
+	// });
+	const closeBtn = document.querySelectorAll('.close');
+	for (let i = 0; i < closeBtn.length; i++) {
+		closeBtn[i].addEventListener('click', function () {
+			this.parentNode.style.display = 'none';
+		});
+	}
+</script>
+</body>
+</html>

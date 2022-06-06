@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button>点击</button>
+<label>
+	<input type="text">
+</label>
+<script>
+	const btn = document.querySelector('button');
+	const input = document.querySelector('input');
+	// 事件绑定函数的第一个参数就是事件对象，通常会命名为e、ev、event
+	btn.addEventListener('click', function (e) {
+		console.log(e);
+	});
+	input.addEventListener('keyup', function (e) {
+		// console.log(e);
+		if (e.key === 'Enter') console.log('这是回车键');
+	});
+</script>
+</body>
+</html>

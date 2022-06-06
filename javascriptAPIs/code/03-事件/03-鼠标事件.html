@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			width: 200px;
+			height: 200px;
+			background-color: #0FF;
+		}
+	</style>
+</head>
+<body>
+<div></div>
+<script>
+	const dv = document.querySelector('div');
+	// 鼠标单击
+	dv.addEventListener('click', function () {
+		alert('haha');
+	});
+	// 鼠标经过
+	dv.addEventListener('mouseenter', function () {
+		dv.style.backgroundColor = '#F0F';
+	});
+	// 鼠标离开
+	dv.addEventListener('mouseleave', function () {
+		dv.style.backgroundColor = '#F00';
+	});
+</script>
+</body>
+</html>

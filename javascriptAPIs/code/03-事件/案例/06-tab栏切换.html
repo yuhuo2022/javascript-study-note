@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>tab栏切换</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.tab {
+			width: 590px;
+			height: 340px;
+			margin: 20px;
+			border: 1px solid #E4E4E4;
+		}
+
+		.tab-nav {
+			width: 100%;
+			height: 60px;
+			line-height: 60px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.tab-nav h3 {
+			font-size: 24px;
+			font-weight: normal;
+			margin-left: 20px;
+		}
+
+		.tab-nav ul {
+			list-style: none;
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		.tab-nav ul li {
+			margin: 0 20px;
+			font-size: 14px;
+		}
+
+		.tab-nav ul li a {
+			text-decoration: none;
+			border-bottom: 2px solid transparent;
+			color: #333;
+		}
+
+		.tab-nav ul li a.active {
+			border-color: #E1251B;
+			color: #E1251B;
+		}
+
+		.tab-content {
+			padding: 0 16px;
+		}
+
+		.tab-content .item {
+			display: none;
+		}
+
+		.tab-content .item.active {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<div class="tab">
+	<div class="tab-nav">
+		<h3>每日特价</h3>
+		<ul>
+			<li><a class="active" href="javascript:">精选</a></li>
+			<li><a href="javascript:">美食</a></li>
+			<li><a href="javascript:">百货</a></li>
+			<li><a href="javascript:">个护</a></li>
+			<li><a href="javascript:">预告</a></li>
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div class="item active"><img alt="" src="./images/tab00.png" /></div>
+		<div class="item"><img alt="" src="./images/tab01.png" /></div>
+		<div class="item"><img alt="" src="./images/tab02.png" /></div>
+		<div class="item"><img alt="" src="./images/tab03.png" /></div>
+		<div class="item"><img alt="" src="./images/tab04.png" /></div>
+	</div>
+</div>
+</body>
+<script>
+	// 获取所有链接
+	const a = document.querySelectorAll('.tab-nav li a');
+	// 为每一个链接添加鼠标进入事件
+	for (let i = 0; i < a.length; i++) {
+		a[i].addEventListener('mouseenter', function () {
+			// 排他，去除链接的active
+			document.querySelector('.tab-nav .active').classList.remove('active');
+			// 为当前链接添加active
+			this.classList.add('active');
+			// 去掉item的active
+			document.querySelector('.tab-content .active').classList.remove('active');
+			// 对应的item添加active
+			document.querySelector(`.tab-content .item:nth-child(${i + 1})`).classList.add('active');
+		});
+	}
+</script>
+</html>

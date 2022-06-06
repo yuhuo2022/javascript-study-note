@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<label>
+	<input type="text" value="今天星期六">
+	<input checked id="man" name="gender" type="checkbox">男
+	<input id="woman" name="gender" type="checkbox"> 女
+	<!-- 	属性和属性值相同可以简写，表示true -->
+	<button disabled>点击</button>
+</label>
+<script>
+	const input = document.querySelector('input');
+	// 获取表单的值用 表单.value
+	console.log(input.value);
+	// 设置属性
+	input.value = '周六';
+	input.type = 'password';
+
+	const man = document.querySelector('#man');
+	const woman = document.querySelector('#woman');
+	// checked只接受布尔值
+	man.checked = false;
+	woman.checked = true;
+
+	const button = document.querySelector('button');
+	console.log(button.disabled);
+	// 默认false，不禁用
+	button.disabled = false;
+</script>
+</body>
+</html>

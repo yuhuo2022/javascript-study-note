@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.father {
+			width: 500px;
+			height: 500px;
+			background-color: #0FF;
+		}
+
+		.son {
+			width: 200px;
+			height: 200px;
+			background-color: #F0F;
+		}
+	</style>
+</head>
+<body>
+<div class="father">
+	<div class="son"></div>
+</div>
+<script>
+	const father = document.querySelector('.father');
+	const son = document.querySelector('.son');
+	document.addEventListener('click', function () {
+		alert('爷爷');
+	});
+	father.addEventListener('click', function () {
+		alert('爸爸');
+	});
+	son.addEventListener('click', function (e) {
+		alert('儿子');
+		// 阻止事件流动（冒泡）
+		e.stopPropagation();
+	});
+
+</script>
+</body>
+</html>

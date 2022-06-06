@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 量词用来设定某个模式重复的次数
+	// *号重复0次或多次
+	console.log(/^哈$/.test('哈')); // true
+	console.log(/^哈*$/.test('哈')); // true
+	console.log(/^哈*$/.test('哈哈哈')); // true
+	console.log(/^哈*$/.test('二哈哈哈')); // false
+	console.log(/^哈*$/.test('哈很哈哈')); // false
+	console.log('----------------------');
+	// +号重复1次或多次
+	console.log(/^哈$/.test('哈')); // true
+	console.log(/^哈+$/.test('哈哈')); // true
+	console.log(/^哈+$/.test('哈哈哈')); // true
+	console.log(/^哈+$/.test('二哈哈哈')); // false
+	console.log(/^哈+$/.test('哈很哈哈')); // false
+	console.log('----------------------');
+	// ？号重复0次或1次
+	console.log(/^哈$/.test('')); // false
+	console.log(/^哈?$/.test('哈')); // true
+	console.log(/^哈?$/.test('哈哈哈')); // false
+	console.log(/^哈?$/.test('二哈哈哈')); // false
+	console.log(/^哈?$/.test('哈很哈哈')); // false
+	console.log('----------------------');
+	// 精准匹配
+	// {n}，必须出现次数
+	console.log(/^哈{3}$/.test('')); // false
+	console.log(/^哈{3}$/.test('哈')); // false
+	console.log(/^哈{3}$/.test('哈哈')); // false
+	console.log(/^哈{3}$/.test('哈哈哈')); // true
+	console.log(/^哈{3}$/.test('哈哈哈哈')); // false
+	console.log('----------------------');
+	// {n,} 大于等于n次
+	console.log(/^哈{3,}$/.test('')); // false
+	console.log(/^哈{3,}$/.test('哈')); // false
+	console.log(/^哈{3,}$/.test('哈哈')); // false
+	console.log(/^哈{3,}$/.test('哈哈哈')); // true
+	console.log(/^哈{3,}$/.test('哈哈哈哈')); // true
+	console.log('----------------------');
+	// {n,m} n次到m次，逗号两侧不能有空格
+	console.log(/^哈{3,5}$/.test('')); // false
+	console.log(/^哈{3,5}$/.test('哈')); // false
+	console.log(/^哈{3,5}$/.test('哈哈')); // false
+	console.log(/^哈{3,5}$/.test('哈哈哈')); // true
+	console.log(/^哈{3,5}$/.test('哈哈哈哈')); // true
+	console.log(/^哈{3,5}$/.test('哈哈哈哈哈')); // true
+	console.log(/^哈{3,5}$/.test('哈哈哈哈哈哈')); // false
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div style="display: none">123</div>
+<ul>
+	<li>无了</li>
+</ul>
+<script>
+	const ul = document.querySelector('ul');
+	// 删除元素必须通过父元素来操作
+	ul.removeChild(ul.children[0]);
+</script>
+</body>
+</html>

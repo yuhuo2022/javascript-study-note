@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div class="box">种下梧桐树，引得凤凰来。面朝大海，春暖花开</div>
+<script>
+	// 获取元素
+	const box = document.querySelector('.box');
+	// 获取、修改文字内容  对象.innerText
+	console.log(box.innerText);
+	box.innerText = '眼看他起高楼，眼看他宴宾客，眼看他楼塌了';
+	// innerText不解析标签
+	box.innerText = '<h4>这是一个4级标题</h4>';
+	
+	// 要解析带标签的元素内容，可以使用 元素.innerHTML
+	box.innerHTML = '<strong>最是人间留不住，朱颜辞镜花辞树</strong>'
+</script>
+</body>
+</html>

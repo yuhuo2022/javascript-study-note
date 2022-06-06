@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button>获取浏览器信息</button>
+<script>
+	const btn = document.querySelector('button');
+	btn.addEventListener('click', function () {
+		console.log(navigator);
+		// navigator.userAgent常用来判断浏览器信息
+		console.log(navigator.userAgent);
+	});
+</script>
+</body>
+</html>

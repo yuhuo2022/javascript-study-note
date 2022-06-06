@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button>点击</button>
+<script>
+	const btn = document.querySelector('button');
+	btn.onclick = function () {
+		alert('被点击了');
+	}
+	// 传统方式事件解绑
+	btn.onclick = null;
+
+	btn.addEventListener('click', fn);
+	// 解绑事件(匿名函数不能解绑)
+	btn.removeEventListener('click', fn);
+
+	function fn() {
+		alert('被点击了');
+	}
+</script>
+</body>
+</html>

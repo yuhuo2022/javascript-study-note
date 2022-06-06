@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>用户名验证</title>
+	<style>
+		span {
+			display: inline-block;
+			width: 250px;
+			height: 30px;
+			vertical-align: middle;
+			line-height: 30px;
+			padding-left: 15px;
+		}
+
+		.error {
+			color: red;
+			background: url(./images/error1.png) no-repeat left center;
+		}
+
+		.right {
+			color: green;
+			background: url(./images/right.png) no-repeat left center;
+		}
+	</style>
+</head>
+<body>
+<label>
+	用户名：<input type="text">
+	<span></span>
+</label>
+<script>
+	const reg = /^[a-zA-Z\d-_]{6,16}$/;
+	const input = document.querySelector('input');
+	const span = document.querySelector('span');
+	input.addEventListener('blur', function () {
+		if (reg.test(this.value)) {
+			span.innerHTML = '用户名符合规则';
+			span.className = 'right';
+		} else {
+			span.innerHTML = '用户名不符合规则，请输入6-16位的英文字母、数字或下划线';
+			span.className = 'error';
+		}
+	});
+</script>
+</body>
+</html>

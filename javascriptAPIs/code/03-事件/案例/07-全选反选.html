@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			border: 1px solid #C0C0C0;
+			width: 500px;
+			margin: 100px auto;
+			text-align: center;
+		}
+
+		th {
+			background-color: #09C;
+			font: bold 16px "微软雅黑";
+			color: #FFF;
+			height: 24px;
+		}
+
+		td {
+			border: 1px solid #D0D0D0;
+			color: #404060;
+			padding: 10px;
+		}
+
+		.allCheck {
+			width: 80px;
+		}
+	</style>
+</head>
+<body>
+<table>
+	<tr>
+		<th class="allCheck">
+			<label for="checkAll">
+				<input id="checkAll" name="" type="checkbox">
+			</label>
+			<span class="all">全选</span>
+		</th>
+		<th>商品</th>
+		<th>商家</th>
+		<th>价格</th>
+	</tr>
+	<tr>
+		<td>
+			<label><input class="ck" name="check" type="checkbox"></label>
+		</td>
+		<td>小米手机</td>
+		<td>小米</td>
+		<td>￥1999</td>
+	</tr>
+	<tr>
+		<td>
+			<label><input class="ck" name="check" type="checkbox"></label>
+		</td>
+		<td>小米净水器</td>
+		<td>小米</td>
+		<td>￥4999</td>
+	</tr>
+	<tr>
+		<td>
+			<label><input class="ck" name="check" type="checkbox"></label>
+		</td>
+		<td>小米电视</td>
+		<td>小米</td>
+		<td>￥5999</td>
+	</tr>
+</table>
+<script>
+	// 大复选框
+	const checkAll = document.querySelector('#checkAll');
+	// 小复选框
+	const cks = document.querySelectorAll('.ck');
+	// 注册事件
+	checkAll.addEventListener('click', function () {
+		// 遍历小复选框,让小复选框的checked与大复选框checked一致
+		for (let i = 0; i < cks.length; i++) {
+			cks[i].checked = checkAll.checked;
+		}
+	});
+	// 小复选框控制大复选框
+	for (let i = 0; i < cks.length; i++) {
+		cks[i].addEventListener('click', function () {
+			// 判断选中的小复选框个数是否等于小复选框的总个数
+			checkAll.checked = document.querySelectorAll('.ck:checked').length === cks.length;
+		});
+	}
+</script>
+</body>
+</html>

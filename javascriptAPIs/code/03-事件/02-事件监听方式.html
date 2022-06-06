@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button class="btn1">按钮1</button>
+<button class="btn2">按钮2</button>
+<script>
+	const btn1 = document.querySelector('.btn1');
+	const btn2 = document.querySelector('.btn2');
+	// 早期的事件监听方式。on事件方式会出现事件覆盖问题
+	btn1.onclick = function () {
+		alert(11);
+	}
+	btn1.onclick = function () {
+		alert(22);
+	}
+	// 现在推荐使用的事件监听方式。这种方式可以添加多个事件，拥有更多事件特性
+	btn2.addEventListener('click', function () {
+		alert('hi~hi');
+	});
+	btn2.addEventListener('click', function () {
+		alert('ha~hi');
+	});
+</script>
+</body>
+</html>

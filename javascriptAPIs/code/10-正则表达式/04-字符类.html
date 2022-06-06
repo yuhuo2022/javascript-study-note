@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>字符类</title>
+</head>
+<body>
+<script>
+	// [] 出现集合内任意一个字符都能成功匹配  [abc]=== a || b|| c
+	console.log(/^[abc]$/.test('a')); // true
+	console.log(/^[abc]$/.test('b')); // true
+	console.log(/^[abc]$/.test('c')); // true
+	console.log(/^[abc]$/.test('ac')); // false
+	console.log(/^[abc]{2}$/.test('ac')); // true
+	console.log('------------------------');
+	// []内加连字符-表示范围，还是只匹配1个  如[a-z]表示a-z26个小写字母
+	console.log(/^[a-z]$/.test('a')); // true
+	console.log(/^[A-Z]$/.test('A')); // true
+	console.log(/^[a-zA-Z0-9]$/.test('2')); // true
+	console.log(/^[a-zA-Z0-9]$/.test('a')); // true
+	console.log(/^[a-zA-Z0-9]$/.test('P')); // true
+	console.log('------------------------');
+	// []内加^表示排除，[^a-z]除了小写字母外的任意字符
+	console.log(/^[^a-z]$/.test('a')); // false
+	console.log(/^[^a-z]$/.test('A')); // true
+
+</script>
+</body>
+</html>

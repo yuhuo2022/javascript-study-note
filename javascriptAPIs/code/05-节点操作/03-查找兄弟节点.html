@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul>
+	<li>
+		<p>这是第一个段落</p>
+	</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+</ul>
+<script>
+	const li2 = document.querySelector('ul li:nth-child(2)');
+	console.log(li2.previousElementSibling); // 上一个兄弟
+	console.log(li2.nextElementSibling); // 下一个兄弟
+</script>
+</body>
+</html>

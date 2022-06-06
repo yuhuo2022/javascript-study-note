@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 写法1
+	setInterval(function () {
+		console.log('一秒执行一次');
+	}, 1000);
+
+	function fn() {
+		console.log('一秒执行一次');
+	}
+
+	// 写法二： 注意函数名不能加小括号调用 或者 'fu()'
+	let timeId = setInterval(fn, 1000);
+
+	// 关闭定时器 clearInterval(定时器id)
+	clearInterval(timeId);
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<img alt="" src="./images/1.webp">
+<script>
+	function getRandom(N, M) {
+		return Math.floor(Math.random() * (M - N + 1)) + N;
+	}
+
+	const img = document.querySelector('img');
+	const random = getRandom(1, 6);
+	img.src = `./images/${random}.webp`;
+</script>
+</body>
+</html>

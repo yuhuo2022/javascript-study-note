@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			width: 400px;
+			height: 40px;
+			border: 2px solid #00FFFF;
+			text-align: center;
+			line-height: 40px;
+		}
+	</style>
+</head>
+<body>
+<div></div>
+<script>
+	const div = document.querySelector('div');
+	const date = new Date();
+	div.innerHTML = date.toLocaleString(); // => 2022/5/12 14:59:44
+	// div.innerHTML = date.toLocaleDateString(); // => 2022/5/12
+	// div.innerHTML = date.toLocaleTimeString(); // => 14:59:44
+	setInterval(function () {
+		const date = new Date();
+		div.innerHTML = date.toLocaleString();
+	}, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	const obj = {
+		uname: '苏白',
+		uAge: 24,
+		gender: '男'
+	}
+	// 本地存储无法直接存储复杂的数据类型
+	// localStorage.setItem('obj', obj);
+	// console.log(localStorage.getItem('obj')); // [object Object]
+
+	// 复杂类型转为JSON字符串后存储
+	localStorage.setItem('obj', JSON.stringify(obj));
+	console.log(localStorage.getItem('obj')); // {"uname":"苏白","uAge":24,"gender":"男"}
+	// 获取存储的复杂数据类型需要将JSON字符串对象转为普通对象类型
+	console.log(JSON.parse(localStorage.getItem('obj')));
+</script>
+</body>
+</html>

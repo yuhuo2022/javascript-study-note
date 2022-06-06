@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<form action="">
+	<label>
+		用户名：<input name="uname" type="text">
+	</label>
+	<label>
+		密码：<input name="pwd" type="password">
+	</label>
+	<button>提交</button>
+</form>
+<body>
+<a href="#/my">我的</a>
+<script>
+	console.log(location.search); // => ?uname=123&pwd=123
+	console.log(location.hash); // => 这个是用于学路由（VUE）做铺垫，经常用于不刷新页面，显示不同页面
+	const btn = document.querySelector('button');
+	btn.addEventListener('click', function () {
+		// 刷新页面 传入产生true，强制刷新
+		location.reload();
+	});
+</script>
+</body>
+</html>

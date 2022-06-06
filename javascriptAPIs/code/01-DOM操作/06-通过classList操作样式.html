@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			width: 200px;
+			height: 200px;
+			background-color: #0FF;
+		}
+
+		.box {
+			color: #00A4FF;
+		}
+
+		.active {
+			width: 300px;
+			height: 300px;
+			background-color: #F0F;
+			margin-left: 100px;
+			color: #050505;
+		}
+	</style>
+</head>
+<body>
+<div class="box">空山新雨后，自挂东南枝</div>
+<script>
+	let box = document.querySelector('div');
+	// add是个方法 添加
+	box.classList.add('active');
+	// remove() 移除 类
+	box.classList.remove('box');
+	// 切换类 toggle 有就删除，没有则添加
+	box.classList.toggle('box');
+</script>
+</body>
+</html>

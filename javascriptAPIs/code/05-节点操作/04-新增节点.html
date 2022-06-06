@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<ul>
+	<li>老大</li>
+</ul>
+<script>
+	const ul = document.querySelector('ul');
+	// 创建节点
+	const li = document.createElement('li');
+	li.innerHTML = '这是新增的个节点';
+	// 新值节点插入到某个父元素的最后
+	// ul.appendChild(li);
+	// 新节点插入到某个父元素的某个子元素之前
+	ul.insertBefore(li, ul.children[0]); // 作为ul的第一个子元素
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>学生信息管理</title>
+	<link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<h1>新增学员</h1>
+<form autocomplete="off" class="info">
+	<label>
+		姓名：
+		<input class="uname" name="uname" type="text" />
+	</label>
+	<label>
+		年龄：
+		<input class="age" name="age" type="text" />
+	</label>
+	<label>
+		性别:
+		<select class="gender" name="gender">
+			<option value="男">男</option>
+			<option value="女">女</option>
+		</select>
+	</label>
+	<label>
+		薪资：
+		<input class="salary" name="salary" type="text" />
+	</label>
+	<label>
+		就业城市：
+		<select class="city" name="city">
+			<option value="北京">北京</option>
+			<option value="上海">上海</option>
+			<option value="广州">广州</option>
+			<option value="深圳">深圳</option>
+			<option value="曹县">曹县</option>
+		</select>
+	</label>
+	<button class="add">录入</button>
+</form>
+
+<h1>就业榜</h1>
+<table>
+	<thead>
+	<tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>性别</th>
+		<th>薪资</th>
+		<th>就业城市</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!--
+		<tr>
+			<td>1001</td>
+			<td>欧阳霸天</td>
+			<td>19</td>
+			<td>男</td>
+			<td>15000</td>
+			<td>上海</td>
+			<td>
+				<a href="javascript:">删除</a>
+			</td>
+		</tr>
+		-->
+	</tbody>
+</table>
+<script>
+	// 读取本地存储数据
+	const data = localStorage.getItem('student-data');
+	// 有数据，返回，没有则创建一个空数组
+	const arr = data ? JSON.parse(data) : [];
+	const tbody = document.querySelector('tbody');
+
+	// 渲染数据
+	function render() {
+		// 遍历数组，生成tr，追加给tbody
+		// 数组的map方法用于处理数据，可以遍历数组，并对数组元素进行处理，返回处理后的新数组。map方法接受匿名函数作为参数
+		// 匿名函数的参数1是数组元素，参数2是数组的下标
+		const trArr = arr.map(function (item,index) {
+			return `<tr>
+				<td>${item.stuId}</td>
+				<td>${item.uname}</td>
+				<td>${item.age}</td>
+				<td>${item.gender}</td>
+				<td>${item.salary}</td>
+				<td>${item.city}</td>
+				<td><a href="javascript:" data-id=${index}>删除</a></td>
+			</tr>
+			`;
+		});
+		// 数组的join方法可以将数组元素转为字符串，参数是字符串的分隔符，默认是空格
+		tbody.innerHTML = trArr.join('');
+	}
+	render();
+
+	// 数据录入
+	const info = document.querySelector('.info');
+	const items = info.querySelectorAll('[name]');
+	info.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const obj = {};
+		// 学号
+		obj.stuId = arr.length ? arr[arr.length - 1].stuId + 1 : 1;
+		for (let i = 0; i < items.length; i++) {
+			// 非空判断
+			if (items[i].value === '') {
+				return alert('输入内容不能为空！！！');
+			}
+			// 给obj添加属性
+			obj[items[i].name] = items[i].value;
+		}
+		// 追加到数组
+		arr.push(obj);
+		// 存储到本地
+		localStorage.setItem('student-data', JSON.stringify(arr));
+		// 渲染页面
+		render();
+		// 重置表单
+		this.reset();
+	});
+
+	// 删除数据
+	tbody.addEventListener('click', function (e) {
+		if (e.target.tagName === 'A') {
+			arr.splice(~e.target.dataset.id, 1);
+			localStorage.setItem('student-data', JSON.stringify(arr));
+			render();
+		}
+	});
+</script>
+</body>
+</html>

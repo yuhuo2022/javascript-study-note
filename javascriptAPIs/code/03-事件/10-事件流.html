@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.father {
+			width: 500px;
+			height: 500px;
+			background-color: #0FF;
+		}
+
+		.son {
+			width: 200px;
+			height: 200px;
+			background-color: #F0F;
+		}
+	</style>
+</head>
+<body>
+<div class="father">
+	<div class="son"></div>
+</div>
+<script>
+	const father = document.querySelector('.father');
+	const son = document.querySelector('.son');
+	// 事件捕获需要给addEventListener传第三个参数true。默认是false。
+	/* document.addEventListener('click', function () {
+		alert('爷爷');
+	}, true);
+	father.addEventListener('click', function () {
+		alert('爸爸');
+	}, true);
+	son.addEventListener('click', function () {
+		alert('儿子');
+	}, true); */
+
+	// 事件冒泡：当一个元素触发事件后，会依次向上调用所有父级元素的同名事件
+	document.addEventListener('click', function () {
+		alert('爷爷');
+	});
+	father.addEventListener('click', function () {
+		alert('爸爸');
+	});
+	son.addEventListener('click', function () {
+		alert('儿子');
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		body {
+			height: 1500px;
+		}
+
+		div {
+			display: none;
+			width: 200px;
+			height: 100px;
+			margin: 100px auto;
+			border: 2px solid #F0F;
+			overflow: scroll;
+		}
+	</style>
+</head>
+<body>
+<div>
+	文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+	文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+	文字文字文字文字文字文字文字文字文字文字
+</div>
+<script>
+	const div = document.querySelector('div');
+	// 页面滚动事件给window加，必须有滚动条才行
+	window.addEventListener('scroll', function () {
+		// console.log('滚动了');
+		// 页面被卷去了多少
+		// document.documentElement获取html标签
+		// console.log(document.documentElement.scrollTop);
+		const des = document.documentElement.scrollTop;
+		if (des >= 100) {
+			div.style.display = 'block';
+		} else {
+			div.style.display = 'none';
+		}
+	});
+	// 元素滚动
+	div.addEventListener('scroll', function () {
+		// 被卷去的头部（看不见的部分）
+		console.log(div.scrollTop);
+	});
+</script>
+</body>
+</html>

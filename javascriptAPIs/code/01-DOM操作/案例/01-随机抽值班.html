@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>抽签</title>
+	<style>
+		.wrapper {
+			width: 840px;
+			height: 420px;
+			margin: 200px auto;
+			background: url(./images/bg01.jpg) no-repeat center / cover;
+			padding: 100px 250px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+
+<body>
+<div class="wrapper" onclick="clickThis()">
+	<strong>涂虎网络有限公司-开发部前端组五一值班</strong>
+	<h2>5.2：<span id="one">???</span></h2>
+	<h2>5.3：<span id="two">???</span></h2>
+	<h2>5.4：<span id="three">???</span></h2>
+</div>
+<script>
+	function clickThis() {
+		const names = ['汪信宇', '徐港归', '周杰', '谭大美', '胡姚', '王博', '向颖', '蓝博', '王霜', '邓伟才'];
+		let random = Math.floor(Math.random() * names.length);
+		const one = document.querySelector('#one');
+		one.innerHTML = names[random];
+		names.splice(random, 1);
+
+		let random2 = Math.floor(Math.random() * names.length);
+		const two = document.querySelector('#two');
+		two.innerHTML = names[random2];
+		names.splice(random2, 1);
+
+		let random3 = Math.floor(Math.random() * names.length);
+		const three = document.querySelector('#three');
+		three.innerHTML = names[random3];
+		names.splice(random3, 1);
+	}
+</script>
+</body>
+
+</html>

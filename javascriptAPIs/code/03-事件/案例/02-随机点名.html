@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		.box {
+			width: 600px;
+			margin: 50px auto;
+			display: flex;
+			font-size: 25px;
+			line-height: 40px;
+		}
+
+		.names {
+			width: 450px;
+			height: 40px;
+			color: red;
+		}
+
+		.btns {
+			text-align: center;
+		}
+
+		.btns button {
+			width: 120px;
+			height: 35px;
+			margin: 0 50px;
+		}
+	</style>
+</head>
+<body>
+<h2>随机点名</h2>
+<div class="box">
+	<span>名字是：</span>
+	<div class="names">这里显示姓名</div>
+</div>
+<div class="btns">
+	<button class="start">开始</button>
+	<button class="end">结束</button>
+</div>
+
+<script>
+	// 数据数组
+	const arr = ['马超', '黄忠', '赵云', '关羽', '张飞'];
+	// 定时器id
+	let timerId = 0;
+	// 随机号
+	let random = 0;
+	const start = document.querySelector('.start');
+	const names = document.querySelector('.names');
+	const end = document.querySelector('.end');
+
+	// 开始模块
+	start.addEventListener('click', function () {
+		// 定时抽
+		timerId = setInterval(function () {
+			// 随机数
+			random = parseInt(Math.random() * arr.length);
+			names.innerHTML = arr[random];
+		}, 300);
+		// 数组只有一个值，禁用按钮
+		if (arr.length === 1) {
+			start.disabled = true;
+			end.disabled = true;
+		}
+	});
+	// 结束模块
+	end.addEventListener('click', function () {
+		// 结束抽取
+		clearInterval(timerId);
+		// 删除抽中的元素
+		arr.splice(random, 1);
+	});
+</script>
+</body>
+</html>

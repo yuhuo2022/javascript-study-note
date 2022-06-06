@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		div {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			background-color: #0FF;
+			margin: 100px;
+		}
+
+		p {
+			width: 100px;
+			height: 100px;
+			background-color: #F0F;
+			margin: 50px;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<p></p>
+</div>
+<script>
+	// 窗口尺寸改变触发事件
+	window.addEventListener('resize', function () {
+		console.log(1);
+	});
+	const div = document.querySelector('div');
+	const p = document.querySelector('p');
+	console.log(div.offsetLeft);
+	// 检测盒子位置，  最近一级带有定位的祖先元素
+	console.log(p.offsetLeft);
+
+	console.log(div.getBoundingClientRect());
+</script>
+</body>
+</html>

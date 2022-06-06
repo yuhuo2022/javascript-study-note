@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.box {
+			width: 200px;
+			height: 200px;
+			background-color: #0FF;
+		}
+	</style>
+</head>
+<body>
+<div class="box">123</div>
+<div class="box">abc</div>
+<p id="nav">导航栏</p>
+<ul>
+	<li>西红柿炒圣女果</li>
+	<li>西红柿炒番茄</li>
+	<li>番茄炒西红柿</li>
+</ul>
+<script>
+	// 获取匹配的第一个元素
+	const box = document.querySelector('div');
+	console.log(box); // => <div class="box">123</div>
+
+	const box1 = document.querySelector('.box');
+	console.log(box1); // => <div class="box">123</div>
+
+	const nav = document.querySelector('#nav');
+	console.log(nav); // => <p id="nav">导航栏</p>
+
+	const li = document.querySelector('ul li:first-child');
+	console.log(li); // => <li>西红柿炒圣女果</li>
+
+	// 获取匹配的所有元素
+	const lis = document.querySelectorAll('ul li');
+	console.log(lis); // => NodeList(3) [li, li, li]
+	for (let i = 0; i < lis.length; i++) {
+		console.log(lis[i]);
+	}
+</script>
+</body>
+</html>

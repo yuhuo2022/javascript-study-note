@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		body {
+			background: url(./images/desktop_1.jpg) no-repeat top center/cover;
+		}
+	</style>
+</head>
+<body>
+<script>
+	function getRandom(N, M) {
+		return Math.floor(Math.random() * (M - N + 1)) + N;
+	}
+
+	const random = getRandom(1, 10);
+	// body页面只有一个，可以直接document.body，不用单独获取元素
+	document.body.style.backgroundImage = `url(./images/desktop_${random}.jpg)`;
+</script>
+</body>
+</html>

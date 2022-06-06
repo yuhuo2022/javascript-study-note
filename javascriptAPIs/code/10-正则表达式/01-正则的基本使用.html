@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 被匹配的字符串
+	const str1 = 'java需要了解一些基本的规则，前端也是要知道一些java知识的';
+	const str2 = '前端不需要掌握后端语言';
+	// 定义正则规则
+	const reg = /java/;
+	// 匹配 reg.test(被检测的内容)
+	console.log(reg.test(str1)); // true
+	console.log(reg.test(str2)); // false
+	console.log(reg.exec(str1)); // ['java', index: 0, input: 'java需要了解一些基本的规则，前端也是要知道一些java知识的', groups: undefined]
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 元字符的边界符
+	console.log(/嘿嘿/.test('嘿嘿哈哈')); // true
+	console.log(/嘿嘿/.test('哈哈嘿嘿')); // true
+	console.log(/嘿嘿/.test('啊嘿嘿哈哈')); // true
+	console.log('---------------------');
+	// 以嘿嘿开头
+	console.log(/^嘿嘿/.test('嘿嘿哈哈')); // true
+	console.log(/^嘿嘿/.test('哈哈嘿嘿')); // false
+	console.log('---------------------');
+	// 以嘿嘿结束
+	console.log(/嘿嘿$/.test('嘿嘿哈哈')); // false
+	console.log(/嘿嘿$/.test('哈哈嘿嘿')); // true
+	// 为了精确匹配，开头和结尾都会写上
+	console.log(/^哈嘿$/.test('哈哈嘿嘿')); // false
+</script>
+</body>
+</html>

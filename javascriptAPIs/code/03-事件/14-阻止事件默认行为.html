@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<form action="http://www.itcast.com">
+	<input type="submit" value="注册">
+</form>
+<script>
+	const form = document.querySelector('form');
+	form.addEventListener('submit', function (e) {
+		// 阻止默认行为
+		e.preventDefault();
+	});
+</script>
+</body>
+</html>

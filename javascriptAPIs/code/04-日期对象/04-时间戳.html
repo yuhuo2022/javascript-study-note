@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	// 获取时间戳
+	// 1
+	const date = new Date();
+	console.log(date.getTime());
+	// 2
+	console.log(+new Date());
+	// 3 不需要实例化。但只能得到当前时间戳。其他两种可以返回指定时间戳
+	console.log(Date.now());
+
+	// 指定时间戳
+	console.log(+new Date('2022-5-15'));
+</script>
+</body>
+</html>
