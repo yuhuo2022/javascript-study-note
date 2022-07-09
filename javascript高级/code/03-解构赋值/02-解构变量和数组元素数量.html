@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>解构变量和数组元素数量</title>
+</head>
+<body>
+<script>
+	// 变量多，元素少，没有被赋值的变量是undefined
+	const [a, b, c, d] = [1, 2, 3];
+	console.log(a, b, c, d); //  1 2 3 undefined
+
+	// 变量少，元素多，多余的元素值不进行赋值。这种情况可以使用剩余参数解决
+	const [e, f, ...g] = [4, 5, 6, 7];
+	console.log(e, f); // 4 5
+	console.log(g);
+
+	// 可以给解构变量赋默认值，防止undefined传递
+	const [m = 8, n = 9] = [];
+	console.log(m, n); // 8 9
+
+	// 按需导入赋值
+	const [h, i, , k] = [10, 11, 12, 13]
+	console.log(h, i, k); // 10 11 13
+
+</script>
+</body>
+</html>

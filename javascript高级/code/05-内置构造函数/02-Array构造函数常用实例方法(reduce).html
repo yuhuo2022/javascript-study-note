@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>数组常用实例方法reduce</title>
+</head>
+<body>
+<script>
+	/*
+	*	1. reduce:累计器，返回函数处理的结果，经常用于求和
+	* 基础语法：arr.reduce(function(累计值，当前元素[,索引号][,源数组]){},起始值)
+	* 起始值可以省略，写了就作为第一次累计的开始值
+	*
+	* 回调函数参数：
+	*  （1）累计值
+	*       1、有起始值，就以起始值为准，作为累计值。累计值=起始值
+	*       2、没有起始值，累计值以数组第一个元素作为起始值，开始累计
+	*       3、后面遍历就会用后面的数组元素累计到累计值中，类似求和中的sum
+	* */
+	const arr = [1, 2, 3, 4, 5, 6]
+
+	// 有起始值
+	// let result = arr.reduce(function (prev, item) {
+	// console.log(11) // 测试遍历的次数 3
+	// 	return prev + item
+	// }, 0)
+
+	// 没有起始值
+	let result = arr.reduce((prev, item) => {
+		console.log(22) // 测试遍历的次数 5
+		return prev + item
+	})
+	console.log(result)
+
+	const arr1 = [
+		{name: '张三', salary: 10000},
+		{name: '李四', salary: 10000},
+		{name: '王五', salary: 10000}
+	]
+	// 涨幅
+	let  money=arr1.reduce((prev, item) =>  prev + item.salary * 0.3, 0)
+	console.log(money)
+</script>
+</body>
+</html>

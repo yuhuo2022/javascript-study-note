@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>数组常用实例方法every&some</title>
+</head>
+<body>
+<script>
+	const arr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+	// 判断数组中是否有满足条件的元素，返回布尔值。只有都满足，才会为true，否则为false
+	let isTrue = arr.every(item => item >= 5)
+	console.log(isTrue)
+	//判断数组中是否有满足条件的元素，返回布尔值。只要有一个满足就为true，全都不满足为false
+	isTrue = arr.some(item => item >= 5)
+	console.log(isTrue)
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>实例成员和静态成员</title>
+</head>
+<body>
+<script>
+	function CreatePeople(name, age) {
+		this.name = name
+		this.age = age
+	}
+
+	// 通过构造函数实例化的对象是实例对象，属性和方法是实例成员
+	const yuHuo = new CreatePeople('渔火', 24)
+	const suBai = new CreatePeople('苏白', 24)
+	console.log(yuHuo,suBai)
+
+	// 静态成员是构造函数的属性和方法
+	CreatePeople.num=10
+	CreatePeople.sayHi=function (){
+		console.log('hah')
+	}
+	console.log(CreatePeople.num)
+	CreatePeople.sayHi()
+</script>
+</body>
+</html>

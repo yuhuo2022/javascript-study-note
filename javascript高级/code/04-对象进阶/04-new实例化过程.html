@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>new实例化过程</title>
+</head>
+<body>
+<script>
+	// 2、构造函数this指向新对象 mi{}
+	// 3. 执行构造函数代码，修改this，添加属性 mi.name='小米'...
+	// 4. 返回新对象 mi{name:''小米,price:1999,count:20}
+	function Goods(name, price, count) {
+		this.name = name
+		this.price = price
+		this.count = count
+	}
+
+	// 1、新建一空对象 {}
+	const mi = new Goods('小米', 1999, 20)
+</script>
+</body>
+</html>

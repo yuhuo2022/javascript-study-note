@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Object</title>
+</head>
+<body>
+<script>
+	const obj = {
+		name: '渔火',
+		age: 24
+	}
+	// Object三个常用的静态方法
+	// 1. Object.keys 获取对象的属性名
+	console.log(Object.keys(obj)) // 返回数组
+
+	// 2. Object.values 获取对象的属性值
+	console.log(Object.values(obj)) // 返回数组
+
+	// 3. Object.assign(拷贝后的新对象，被拷贝的对象) 拷贝对象
+	const yuHou = {}
+	Object.assign(yuHou, obj)
+	console.log(yuHou)
+
+	//Object.assign经常用于给对象添加属性
+	Object.assign(obj, {gender: '男'})
+	console.log(obj)
+</script>
+</body>
+</html>

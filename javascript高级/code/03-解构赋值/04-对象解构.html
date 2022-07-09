@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>对象解构</title>
+</head>
+<body>
+<script>
+	// 对象解构，属性名与变量名要一致
+	const {name, age} = {name: '苏白', age: 24}
+	console.log(name, age); // 苏白 24
+
+	// 对象解构的变量名重命名
+	const {name: uname, age: uAge} = {name: '苏白', age: 24}
+	console.log(uname, uAge)
+</script>
+</body>
+</html>

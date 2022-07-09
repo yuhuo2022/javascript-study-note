@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>构造函数</title>
+</head>
+<body>
+<script>
+	// 构造函数
+	function CreatePeople(name, age) {
+		this.name = name
+		this.age = age
+	}
+
+	// 实例化对象
+	const yuHuo = new CreatePeople('渔火', 24)
+	const suBai = new CreatePeople('苏白', 24)
+	console.log(yuHuo)
+	console.log(suBai)
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>构造函数创建对象</title>
+</head>
+<body>
+<script>
+	// 商品对象构造函数
+	function Goods(name, price, count) {
+		this.name = name
+		this.price = price
+		this.count = count
+	}
+
+	const mi = new Goods('小米', 1999, 20)
+	const hv = new Goods('华为', 3999, 50)
+	const mz = new Goods('魅族', 1888, 10)
+	console.log(mi)
+	console.log(hv)
+	console.log(mz)
+</script>
+</body>
+</html>

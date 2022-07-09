@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+</head>
+<body>
+<script>
+	// 简单理解闭包： 内层函数 + 外层函数的变量
+	/* 	function outer() {
+			let num = 10;
+			function inner() {
+				console.log(num);
+			}
+			inner();
+		}
+		outer(); */
+
+	// 常见闭包形式：外部可以访问使用函数内部的变量
+	/* function outer() {
+		let num = 10;
+
+		function inner() {
+			console.log(num);
+		}
+
+		return inner;
+	}
+
+	// outer() === inner === function inner(){}  都是等价的
+	// const fun = function inner() {};
+	const fun = outer();
+	fun(); //外部要使用num   函数调用
+	*/
+
+	/*
+		// 另一种常见写法
+		function outer() {
+			let num = 100;
+			return function () {
+				console.log(num);
+			}
+		}
+		const fun = outer();
+		fun(); //外部要使用num   函数调用 */
+
+	// 第三种常见写法
+	function outer() {
+		let num = 100
+		return function () {
+			return num
+		}
+	}
+
+	const fun = outer()
+	console.log(fun())
+</script>
+</body>
+</html>

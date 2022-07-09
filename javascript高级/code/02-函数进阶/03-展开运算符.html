@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>展开运算符</title>
+</head>
+<body>
+<script>
+	// 展开运算符可以展开数组或者对象，一般多用于数组
+	const arr1 = [1, 2, 3, 5]
+	const arr2 = [6, 7, 4]
+	console.log(arr1) // (4)[1, 2, 3, 5]
+	console.log(...arr1) // 1 2 3 5
+
+	// 典型应用：求数组元素最值或者合并数组
+	console.log(Math.max(...arr1))
+	const arr = [...arr1, ...arr2]
+	console.log(arr) // [1, 2, 3, 5, 6, 7, 4]
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包应用</title>
+</head>
+<body>
+<script>
+	// 统计函数调用的次数
+	let i = 0 // i是全局变量，有被篡改的风险
+
+	function fn() {
+		i++
+		console.log(`函数被调用了${i}次`)
+	}
+
+	// 闭包形式
+	function count() {
+		let i = 0 // 局部变量，不能直接修改，更安全
+		function fn() {
+			i++
+			console.log(`函数被调用了${i}次`)
+		}
+
+		return fn
+	}
+
+	const fun = count()
+	fun()
+	// 闭包可能有内存泄漏问题
+</script>
+</body>
+</html>

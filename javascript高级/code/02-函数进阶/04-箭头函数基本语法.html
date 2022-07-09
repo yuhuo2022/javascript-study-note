@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>箭头函数基本语法</title>
+</head>
+<body>
+<script>
+	// 一般函数表达式写法
+	const fn = function (a, b) {
+		console.log(a + b)
+	}
+	fn(1, 2)
+	// 箭头函数写函数表达式
+	const fun = (a, b) => {
+		console.log(a + b)
+	}
+	fun(1, 2)
+	// 只有一个参数时可以省略小括号
+	const fun1 = a => {
+		console.log(a)
+	}
+	fun1(2)
+	// 只有一行代码时可以省略大括号
+	const fun2 = a => console.log(a)
+	fun2(2)
+	// 只有一行代码可以省略return
+	const fun3 = a => a + a
+	fun3(2)
+	// 箭头函数可以直接返回一个对象  用小括号括起
+	const fun4 = (uname) => ({uname})
+	console.log(fun4('苏白'))
+</script>
+</body>
+</html>
