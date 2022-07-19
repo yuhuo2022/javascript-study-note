@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>try/catch</title>
+  </head>
+  <body>
+    <p>123456</p>
+    <script>
+      function fn() {
+        try {
+          // 可能出问题的代码写到try中
+          const p = document.querySelector('.p')
+          p.style.color = '#f00'
+        } catch (err) {
+          // cathc中是捕获的异常，只有出问题才执行
+          console.log(err.message)
+          // return
+          throw new Error('是不是又把选择器写错了！！！')
+        } finally {
+          // finally不管有没有问题都会执行
+          alert('执行了')
+        }
+        console.log(111)
+      }
+      fn()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>递归</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      // setTimeout模拟setInterval
+      function getTime() {
+        document.querySelector('div').innerHTML = new Date().toLocaleString()
+        setTimeout(getTime,1000)
+      }
+      getTime()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>递归实现深拷贝</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        name: '渔火',
+        age: 24,
+        hobby: ['吃饭', '睡觉', '打豆豆'],
+        family: {
+          bb: 'bb'
+        }
+      }
+      const o = {}
+      // 拷贝函数
+      function deepCopy(newObj, oldObj) {
+        for (let k in oldObj) {
+          // 处理数组
+          if (oldObj[k] instanceof Array) {
+            newObj[k] = []
+            deepCopy(newObj[k], oldObj[k])
+          } else if (oldObj[k] instanceof Object) {
+            // 处理对象
+            newObj[k] = []
+            deepCopy(newObj[k], oldObj[k])
+          } else {
+            newObj[k] = oldObj[k]
+          }
+        }
+      }
+      deepCopy(o, obj)
+      o.age = 25
+      o.hobby[0] = '打游戏'
+      o.family.bb = '88'
+      console.log(o)
+      console.log(obj)
+    </script>
+  </body>
+</html>

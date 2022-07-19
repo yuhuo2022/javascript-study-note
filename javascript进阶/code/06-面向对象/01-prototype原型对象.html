@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>原型</title>
+  </head>
+  <body>
+    <script>
+      // 构造函数
+      // 公共的属性写在构造函数中
+      function Star(uName, uAge) {
+        this.uName = uName
+        this.uAge = uAge
+      }
+      // 公共的方法挂载到原型prototype
+      Star.prototype.sing = function () {
+        console.log('唱歌')
+      }
+      const ldh = new Star('刘德华', 55)
+      const zxy = new Star('张学友', 58)
+      ldh.sing()
+      zxy.sing()
+      console.log(ldh.sing === zxy.sing) // true 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>数组方法练习2</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      const gift = '茶叶50g,清洗球'
+      // 字符串拆分为数组 
+      // 遍历数组，生成对于元素数组，并将数组转化为字符串
+      // 追加到页面中
+      document.querySelector('div').innerHTML = gift
+        .split(',')
+        .map(item => `<span>【赠品】${item}</span><br>`)
+        .join('')
+    </script>
+  </body>
+</html>

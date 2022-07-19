@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>面向对象封装消息提示</title>
+    <style>
+      .modal {
+        width: 300px;
+        min-height: 100px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        position: fixed;
+        z-index: 999;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        background-color: #fff;
+      }
+
+      .modal .header {
+        line-height: 40px;
+        padding: 0 10px;
+        position: relative;
+        font-size: 20px;
+      }
+
+      .modal .header i {
+        font-style: normal;
+        color: #999;
+        position: absolute;
+        right: 15px;
+        top: -2px;
+        cursor: pointer;
+      }
+
+      .modal .body {
+        text-align: center;
+        padding: 10px;
+      }
+
+      .modal .footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+      }
+
+      .modal .footer a {
+        padding: 3px 8px;
+        background: #ccc;
+        text-decoration: none;
+        color: #fff;
+        border-radius: 2px;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .modal .footer a.submit {
+        background-color: #369;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="delete">删除</button>
+    <button id="login">登录</button>
+
+    <!-- <div class="modal">
+	<div class="header">温馨提示 <i>x</i></div>
+	<div class="body">您没有删除权限操作</div>
+</div> -->
+    <script>
+      // 模态框构造函数
+      function ModalBox(title = '', message = '') {
+        this.title = title
+        this.message = message
+        // 创建公共容器
+        this.ModalBox = document.createElement('div')
+        // 添加类名
+        this.ModalBox.className = 'modal'
+        // 填充内容
+        this.ModalBox.innerHTML = `
+				<div class="header">${this.title} <i>x</i></div>
+				<div class="body">${this.message}</div>
+				`
+      }
+      // 挂载方法到模态框原型上，打开模态框
+      ModalBox.prototype.open = function () {
+        if (!document.querySelector('.modal')) {
+          // 把创建的模态框盒子追加到body中
+          document.body.appendChild(this.ModalBox)
+          // 获取关闭按钮，调用关闭方法   这里要用箭头函数，因为没有this，会找上一层的this
+          this.ModalBox.querySelector('i').addEventListener('click', () => this.close())
+        }
+      }
+      ModalBox.prototype.close = function () {
+        // 把创建的模态框盒子从页面移除
+        document.body.removeChild(this.ModalBox)
+      }
+      // 删除按钮点击事件
+      document.querySelector('#delete').addEventListener('click', () => {
+        const modal = new ModalBox('温馨提示', '您没有删除权限')
+        // 调用open方法
+        modal.open()
+      })
+      // 登录按钮点击事件
+      document.querySelector('#login').addEventListener('click', () => {
+        const modal = new ModalBox('温馨提示', '您还没有注册账号')
+        // 调用open方法
+        modal.open()
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>原型继承</title>
+  </head>
+  <body>
+    <script>
+      function Preson() {
+        this.eays = 2
+        this.hesd = 1
+      }
+      function Woman() {}
+      // 原型继承
+      Woman.prototype = new Preson()
+      // 指回原来的构造函数
+      Woman.prototype.constructor = Woman
+      Woman.prototype.baby = function () {
+        console.log('baby')
+      }
+      function Man() {}
+      Man.prototype = new Preson()
+      const woman = new Woman()
+      const man = new Man()
+      console.log(woman)
+      console.log(man)
+    </script>
+  </body>
+</html>

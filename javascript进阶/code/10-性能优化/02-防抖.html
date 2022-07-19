@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>防抖</title>
+    <style>
+      .box {
+        width: 500px;
+        height: 500px;
+        background-color: #ccc;
+        color: #fff;
+        text-align: center;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+    <script>
+      const box = document.querySelector('.box')
+      let i = 1
+      // 鼠标移动函数
+      function mouseMove() {
+        box.innerHTML = ++i
+      }
+      // 防抖函数
+      function debounce(fn, t) {
+        let timeId
+        return function () {
+          // 有定时器就清除
+          if (timeId) clearTimeout(timeId)
+          // 开启定时器
+          timeId = setTimeout(() => fn(), t)
+        }
+      }
+      box.addEventListener('mousemove', debounce(mouseMove, 200))
+    </script>
+  </body>
+</html>

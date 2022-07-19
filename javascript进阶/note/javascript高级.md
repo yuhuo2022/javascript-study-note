@@ -655,20 +655,10 @@ Object三个常用的静态方法：
 
 1. 推荐使用字面量方式声明数组，而不是 `Array` 构造函数
 2. **实例方法 `forEach` 用于遍历数组，替代 `for` 循环** 
-```js
-
-```
 3. **实例方法 `filter` 过滤数组单元值，生成新数组**
-
-```js
-
-```
 
 4. **实例方法 `map` 迭代原数组，生成新数组**
 
-```js
-
-```
 5. **实例方法 `join` 数组元素拼接为字符串，返回字符串**
 6. **实例方法  `find`  查找元素， 返回符合测试条件的第一个数组元素值，如果没有符合条件的则返回 undefined**
 
@@ -770,3 +760,691 @@ let isTrue = arr.every(item => item >= 5)
 
 1. 推荐使用字面量方式声明数值，而不是 `Number` 构造函数
 2. 实例方法 `toFixed` 用于设置保留小数位的长度
+
+## 六、面向对象
+
+面向对象编程是一种程序设计思想，它具有3个显著的特征：封装、继承、多态。
+
+### 6.1 封装
+
+封装的本质是将具有关联的代码组合在一起，其优势是能够保证代码复用且易于维护，函数是最典型也是最基础的代码封装形式，面向对象思想中的封装仍以函数为基础，但提供了更高级的封装形式。
+
+#### 命名空间和构造函数封装对比
+
+以普通对象（命名空间）形式封装的代码只是单纯把一系列的变量或函数组合到一起，所有的数据变量都被用来共享（使用 this 访问）。
+
+同样的将变量和函数组合到了一起并能通过 this 实现数据的共享，所不同的是借助构造函数创建出来的实例对象之间是彼此不影响的。
+
+总结：
+
+1. **构造函数体现了面向对象的封装特性**
+2. **构造函数实例创建的对象彼此独立、互不影响**
+3. 命名空间式的封装无法保证数据的独立性
+
+构造函数存在浪费内存的问题，通过原型能解决这个问题。
+
+#### 原型对象与对象原型
+
+实际上**每一个构造函数都有一个名为 `prototype` 的属性**，译成中文是原型的意思，`prototype` 的是对象类据类型，称为构造函数的原型对象，**每个原型对象都具有 `constructor` 属性**代表了该**原型对象对应的构造函数**。
+
+prototype对象可以挂载函数，对象实例化不会多次创建原型上函数，节约内存。
+
+可以把不变的方法直接定义到prototype对象上，这样所有对象的实例都可以共享这些方法。
+
+**构造函数和原型对象中的this都指向实例化对象。**
+
+JavaScript中对象的工作机制：**当访问对象的属性或方法时，先在当前实例对象是查找，然后再去原型对象查找，并且原型对象被所有实例共享。**
+
+**结合构造函数原型的特征，实际开发重往往会将封装的功能函数添加到原型对象中。**
+
+```js
+// 构造函数
+// 公共的属性写在构造函数中
+function Star(uName, uAge) {
+   this.uName = uName
+    this.uAge = uAge
+}
+// 公共的方法挂载到原型prototype
+Star.prototype.sing = function () {
+   console.log('唱歌')
+}
+const ldh = new Star('刘德华', 55)
+const zxy = new Star('张学友', 58)
+ldh.sing()
+zxy.sing()
+console.log(ldh.sing === zxy.sing) // true 
+```
+
+constructor属性的应用场景：指回创建原型对象的构造函数
+
+```js
+function Star() {}
+// Star.prototype.sing = function () {
+//   console.log('唱歌')
+// }
+// Star.prototype.dance = function () {
+//   console.log('跳舞')
+// }
+console.log(Star.prototype)
+Star.prototype = {
+ 	// 重新指回创造这个原型对象的构造函数
+	constructor: Star,
+  sing() {
+      console.log('唱歌')
+  },
+  dance() {
+    console.log('跳舞')
+    }
+}
+console.log(Star.prototype)
+ // const ldh = new Star()
+// console.log(Star.prototype.constructor === Star)
+```
+
+`prototype`是原型对象，`__proto__`是对象原型。对象都会有一个属性`__proto__`指向构造函数的`prototype`原型对象。这就是对象可以使用构造函数prototype原型对象属性和方法的原因。
+
+注意：
+
+- `__proto__`是JS非标准属性
+- [[prototype]]和`__proto__`意义相同，是只读的。
+- 用来表明当前实例对象指向哪个原型对象prototype
+- `__proto__`对象原型中也有一个constructor属性，指向创建该实例对象的构造函数
+
+<img src="https://pic.imgdb.cn/item/62d5b7c9f54cd3f937b22dd6.png" alt="image-20220719034259002" style="zoom:50%;" />
+
+### 6.2 继承
+
+继承是面向对象编程的另一个特征，通过继承进一步提升代码封装的程度，JavaScript中大多是借助原型对象实现继承的特性。
+
+#### 原型继承
+
+基于构造函数原型对象实现面向对象的继承特性。
+
+```js
+      const Preson = {
+        eays: 2,
+        hesd: 1
+      }
+      // 继承
+      function Woman() {
+        // this.eays = 2
+        // this.hesd = 1
+      }
+      // 原型继承
+      Woman.prototype = Preson
+      // 指回原来的构造函数
+      Woman.prototype.constructor = Woman
+      function Man() {}
+      // Man.prototype = Preson
+			// Man.prototype.constructor = Man
+      const woman = new Woman()
+      const man = new Man()
+      console.log(woman)
+      console.log(man)
+```
+
+原型继承的问题：继承于同一个对象，根据引用类型的特点，都会受影响。解决方法是继承构造函数创建的对象，不要继承一般对象。
+
+改进：
+
+```js
+     function Preson() {
+        this.eays = 2
+        this.hesd = 1
+      }
+      function Woman() {}
+      // 原型继承
+      Woman.prototype = new Preson()
+      // 指回原来的构造函数
+      Woman.prototype.constructor = Woman
+      Woman.prototype.baby = function () {
+        console.log('baby')
+      }
+      function Man() {}
+      Man.prototype = new Preson()
+      const woman = new Woman()
+      const man = new Man()
+      console.log(woman)
+      console.log(man)
+```
+
+**所有的对象里面都有`__proto__`对象原型，指向`prptotype`原型对象。**
+
+**所有的原型对象里面都有`constructor`，指向创造原型对象的构造函数。**
+
+#### 原型链
+
+基于原型对象的继承使得不同构造函数的原型对象关联在一起，并且这种关联的关系是一种链状的结构，将原型对象的链状结构关系称为原型链。
+
+在JavaScript对象中包括了一个非标准备的属性 `__proto__` 它指向了构造函数的原型对象，通过它可以清楚的查看原型对象的链状结构。
+
+<img src="https://pic.imgdb.cn/item/62d5c3c0f54cd3f937b9d497.png" alt="image-20220719043407158" style="zoom:50%;" />
+
+原型链查找规则：
+
+- 当访问一个对象的属性（方法）时，首先查找这个对象自身有没有该属性。
+- 没有就找它的原型（`__proto__`指向的prototype原型对象）
+- 还没有就找原型对象的原型（Object对象）
+- 以此类推一直找到Object为止（null）
+
+`__proto__`对象原型的意义在于为对象成员查找机制提供一个方向或者说一条路线。
+
+可以使用instanceof运算符检测构造函数的prptotype属性是否出现在某个实例对象的原型链上。
+
+## 七、深浅拷贝
+
+开发中经常需要复制一个对象。如果直接用赋值会出现修改一个对象的值，其他对象都会修改的问题。这就像生活中内部装修改变了，不管开几扇门，打开里面都一样。
+
+```js
+const obj = {
+        name: '渔火',
+        age: 24
+      }
+// 直接复制对象，可能会发生一改全改的问题
+const o = obj
+o.age = 25
+console.log(obj) // {name: '渔火', age: 25}
+console.log(o) // {name: '渔火', age: 25}
+```
+
+### 7.1 浅拷贝
+
+首先浅拷贝和深拷贝只针对引用类型。
+
+浅拷贝:拷贝的是地址
+
+**常见方法:**
+
+拷贝对象:Object.assgin() / 展开运算符 {...obj} 拷贝对象
+
+拷贝数组:Array.prototype.concat() 或者 [...arr]
+
+如果是简单数据类型拷贝值，引用数据类型拷贝的是地址 (简单理解: 如果是单层对象，没问题，如果有多层就有问题)
+
+直接赋值和浅拷贝有什么区别：
+
+- 直接赋值的方法，只要是对象，都会相互影响，因为是直接拷贝对象栈里面的地址
+- 浅拷贝如果是一层对象，不相互影响，如果出现多层对象拷贝还会相互影响
+
+```js
+const obj = {
+        name: '渔火',
+        age: 24
+      }
+      // 展开运算符浅拷贝对象
+      const o = { ...obj }
+      o.age = 25
+      console.log(obj) // {name: '渔火', age: 24}
+      console.log(o) // {name: '渔火', age: 25}
+
+      // Object.assign浅拷贝
+      const o1={}
+      Object.assign(o1,obj)
+      o1.age=26
+      console.log(o1) // {name: '渔火', age: 26}
+      console.log(obj) // {name: '渔火', age: 24}
+```
+
+### 7.2 深拷贝
+
+深拷贝:拷贝的是对象，不是地址
+
+**常见方法:** 
+
+1. 通过递归实现深拷贝
+1. lodash/cloneDeep
+1. 通过JSON.stringify()实现
+
+#### 递归实现深拷贝
+
+函数递归:如果一个函数在内部可以调用其本身，那么这个函数就是递归函数。
+
+简单理解:函数内部自己调用自己, 这个函数就是递归函数
+
+递归函数的作用和循环效果类似
+
+**由于递归很容易发生“栈溢出”错误(stack overflow)，所以必须要加退出条件 return**
+
+案例：通过递归用setTimeout模拟setInterval效果
+
+```js
+// setTimeout模拟setInterval
+      function getTime() {
+        document.querySelector('div').innerHTML = new Date().toLocaleString()
+        setTimeout(getTime,1000)
+      }
+      getTime()
+```
+
+递归实现深拷贝：
+
+```js
+     const obj = {
+        name: '渔火',
+        age: 24,
+        hobby: ['吃饭', '睡觉', '打豆豆'],
+        family: {
+          bb: 'bb'
+        }
+      }
+      const o = {}
+      // 拷贝函数
+      function deepCopy(newObj, oldObj) {
+        for (let k in oldObj) {
+          // 处理数组
+          if (oldObj[k] instanceof Array) {
+            newObj[k] = []
+            deepCopy(newObj[k], oldObj[k])
+          } else if (oldObj[k] instanceof Object) {
+            // 处理对象
+            newObj[k] = []
+            deepCopy(newObj[k], oldObj[k])
+          } else {
+            newObj[k] = oldObj[k]
+          }
+        }
+      }
+      deepCopy(o, obj)
+      o.age = 25
+      o.hobby[0] = '打游戏'
+      o.family.bb = '88'
+      console.log(o)
+      console.log(obj)
+```
+
+简单说明深拷贝过程：
+
+- 深拷贝是做到拷贝出的新对象不会影响旧对象，要实现深拷贝，需要用到递归
+- 普通拷贝直接拷贝就行，但遇到数组，再次递归解决数组
+- 遇到对象，再次递归解决对象
+- 先数组再对象
+
+#### js库lodash里面cloneDeep内部实现深拷贝
+
+```html
+<script src="./lodash.min.js"></script>
+    <script>
+      const obj = {
+        name: '渔火',
+        age: 24,
+        hobby: ['吃饭', '睡觉', '打豆豆'],
+        family: {
+          bb: 'bb'
+        }
+      }
+      const o = _.cloneDeep(obj)
+      o.family.bb = '88'
+      console.log(o)
+      console.log(obj)
+    </script>
+```
+
+#### 通过JSON.stringify()实现深拷贝
+
+```js
+    const obj = {
+        name: '渔火',
+        age: 24,
+        hobby: ['吃饭', '睡觉', '打豆豆'],
+        family: {
+          bb: 'bb'
+        }
+      }
+      // 把对象转为字符串,再转为对象
+      const o = JSON.parse(JSON.stringify(obj))
+      o.family.bb = '88'
+      console.log(o)
+      console.log(obj)
+```
+
+## 八、异常处理
+
+异常处理是指预估代码执行过程中可能发生的错误，然后最大程度的避免错误的发生导致整个程序无法继续运行。
+
+了解程序异常处理的方法，可以提升代码运行的健壮性。
+
+### 8.1 throw抛异常
+
+throw抛出异常信息，程序也会终止执行
+
+throw后面跟的是错误提示信息
+
+Error对象配合throw使用，能够设置更详细的错误信息
+
+```js
+function fn(x, y) {
+        if (!x || !y) {
+          throw new Error('没有参数传递进来')
+        }
+        return x + y
+      }
+      fn()
+```
+
+### 8.2 try/catch 捕获异常
+
+通过try/catch 捕获错误信息(浏览器提供的错误信息)
+
+将预估可能发生错误的代码写在try代码段中
+
+如果try代码段中出现错误后，会执行catch代码段，并截获到错误信息
+
+finally不管是否有错误，都会执行
+
+```html
+   <p>123456</p>
+    <script>
+      function fn() {
+        try {
+          // 可能出问题的代码写到try中
+          const p = document.querySelector('.p')
+          p.style.color = '#f00'
+        } catch (err) {
+          // cathc中是捕获的异常，只有出问题才执行
+          console.log(err.message)
+          return
+        } finally {
+          // finally不管有没有问题都会执行
+          alert('执行了')
+        }
+        console.log(111)
+      }
+      fn()
+    </script>
+```
+
+## 九、处理this
+
+### 9.1 this指向
+
+普通函数的调用方式决定了this的值，即【谁调用，this的值指向谁】。
+
+普通函数没有明确调用者时this 值为window，严格模式下没有调用者时this的值为undefined。
+
+箭头函数中的this与普通函数完全不同，也不受调用方式的影响，事实上**箭头函数中并不存在this**!
+
+箭头函数会默认绑定外层this的值，所以在箭头函数中this的值和外层的this是一样的。
+
+箭头函数中的this引用的就是最近作用域中的this。
+
+向外层作用域中，一层一层查找this，直到有this的定义。
+
+注意：
+
+- 在开发中【使用箭头函数前需要考虑函数中this的值】，事件回调函数使用箭头函数时，this为全局的window。因此DOM事件回调函数如果里面需要DOM对象的this，则不推荐使用箭头函数。
+
+- 同样由于箭头函数this的原因，基于原型的面向对象也不推荐采用箭头函数
+
+### 9.2 改变this
+
+JavaScript中还允许指定函数中this的指向，有3个方法可以动态指定普通函数中this的指向：
+
+- call()
+- apply()
+- bind()
+
+#### call()
+
+使用call方法调用函数，同时指定被调用函数中this的值。
+
+语法：fun.call(thisArg, arg1, arg2, ...)
+
+thisArg:在 fun 函数运行时指定的 this 值
+
+arg1，arg2:传递的其他参数
+
+返回值就是函数的返回值，因为它就是调用函数
+
+call()方法使用很少。
+
+```js
+ const obj = {
+        name: '渔火'
+      }
+      function fn(x, y) {
+        console.log(this)
+        console.log(x + y)
+      }
+      // call() 调用函数，改变this指向
+      fn.call(obj, 1, 2)
+```
+
+#### apply()
+
+使用apply方法调用函数，同时指定被调用函数中this的值。
+
+语法：fun.apply(thisArg, [argsArray])
+
+thisArg:在fun函数运行时指定的this值
+
+argsArray:传递的值，必须包含在**数组**里面
+
+返回值就是函数的返回值，因为它就是调用函数
+
+因此apply主要跟数组有关系，比如使用 Math.max() 求数组的最大值。
+
+第一个参数不需要指定时可以传入null。
+
+```js
+      const obj = {
+        name: '渔火'
+      }
+      function fn(x, y) {
+        console.log(this)
+        console.log(x + y)
+      }
+      // apply() 调用函数，改变this指向
+      // 参数1是要窒息的this
+      // apply的参数2是数组
+      fn.apply(obj, [1, 2])
+
+      // 使用场景
+      const max = Math.max.apply(Math, [1, 2, 3])
+      console.log(max)
+```
+
+call和apply的异同:
+
+- 都是调用函数，都能改变this指向
+- 参数不一样，apply传递的必须是数组
+
+#### bind()
+
+bind() 方法不会调用函数。但是能改变函数内部this指向。
+
+语法：fun.bind(thisArg, arg1, arg2, ...)
+
+thisArg:在fun函数运行时指定的this值
+
+arg1，arg2:传递的其他参数
+
+返回由指定的this值和初始化参数改造的**原函数拷贝 (新函数)**
+
+因此当只是想改变this指向，并且不想调用这个函数的时候，可以使用bind，比如改变定时器内部的this指向。
+
+这个方法很常用。
+
+```js
+     const obj = {
+        name: '渔火'
+      }
+      function fn() {
+        console.log(this)
+      }
+      // 改变this指向，但不调用函数
+      // 返回值是一个函数，但this指向已经改过了
+      const fun = fn.bind(obj)
+      fun()
+
+ document.querySelector('button').addEventListener('click', function () {
+        // 禁用按钮
+        this.disabled = true
+        setTimeout(
+          function () {
+            // 修改this，由window改为按钮
+            this.disabled = false
+          }.bind(this),
+          2000
+        )
+      })
+```
+
+## 十、性能优化
+
+### 10.1 节流
+
+节流：指连续触发事件但在n秒内只执行一次函数
+
+典型场景：鼠标移动、滚动条、页面尺寸变化等
+
+简单理解：当前时间 - 起始时间大于指定值，执行功能
+
+```js
+ const box = document.querySelector('.box')
+      let i = 1
+      // 鼠标移动函数
+      function mouseMove() {
+        box.innerHTML = ++i
+      }
+      // 节流函数
+      function throttle(fn, time) {
+        // 起始时间
+        let startTime = 0
+        return function () {
+          // 当前时间
+          let now = Date.now()
+          // 当前时间减去起始时间大于500，执行函数（节流）
+          if (now - startTime >= time) {
+            fn()
+            // 起始时间 = 当前时间
+            startTime = now
+          }
+        }
+      }
+      box.addEventListener('mousemove', throttle(mouseMove, 500))
+```
+
+### 10.2 防抖
+
+防抖就是触发事件后在n秒内函数只执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间。
+
+典型场景：输入框输入结束才发送请求
+
+简单说：不断清除定时器，开启定时器
+
+```js
+const box = document.querySelector('.box')
+      let i = 1
+      // 鼠标移动函数
+      function mouseMove() {
+        box.innerHTML = ++i
+      }
+      // 防抖函数
+      function debounce(fn, t) {
+        let timeId
+        return function () {
+          // 有定时器就清除
+          if (timeId) clearTimeout(timeId)
+          // 开启定时器
+          timeId = setTimeout(() => fn(), t)
+        }
+      }
+      box.addEventListener('mousemove', debounce(mouseMove, 200))
+```
+
+### 10.3 lodash节流防抖
+
+```html
+		<script src="../js/lodash.min.js"></script>
+    <script>
+      const box = document.querySelector('.box')
+      let i = 1
+      // 鼠标移动函数
+      function mouseMove() {
+        box.innerHTML = ++i
+      }
+      // 节流
+      // box.addEventListener('mousemove', _.throttle(mouseMove, 500))
+      // 防抖
+      box.addEventListener('mousemove', _.debounce(mouseMove,200))
+    </script>
+```
+
+### 10.4 节流案例
+
+```html
+<div class="container">
+      <div class="header">
+        <a href="http://pip.itcast.cn">
+          <img src="https://pip.itcast.cn/img/logo_v3.29b9ba72.png" alt="" />
+        </a>
+      </div>
+      <div class="video">
+        <video src="https://v.itheima.net/LapADhV6.mp4" controls></video>
+      </div>
+      <div class="elevator">
+        <a href="javascript:" data-ref="video">视频介绍</a>
+        <a href="javascript:" data-ref="intro">课程简介</a>
+        <a href="javascript:" data-ref="outline">评论列表</a>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+      // 获取视频元素
+      const video = document.querySelector('video')
+      // 音频视频绑定事件要用on事件方式绑定处理函数   节流
+      video.ontimeupdate = _.throttle(() => {
+        // 获得当前视频的时间，并保存到本地
+        localStorage.setItem('currentTime', video.currentTime)
+      }, 1000)
+      // 打开页面，触发事件，读取本地存储的时间，给当前时间
+      video.onloadeddata = () => {
+        video.currentTime = localStorage.getItem('currentTime') || 0
+      }
+    </script>
+```
+
+```css
+* {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 1200px;
+        margin: 0 auto;
+      }
+
+      .video video {
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      .elevator {
+        position: fixed;
+        top: 280px;
+        right: 20px;
+        z-index: 999;
+        background: #fff;
+        border: 1px solid #e4e4e4;
+        width: 60px;
+      }
+
+      .elevator a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        text-align: center;
+        color: #999;
+      }
+
+      .elevator a.active {
+        color: #1286ff;
+      }
+
+      .outline {
+        padding-bottom: 300px;
+      }
+```
+

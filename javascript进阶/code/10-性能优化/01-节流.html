@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>节流</title>
+    <style>
+      .box {
+        width: 500px;
+        height: 500px;
+        background-color: #ccc;
+        color: #fff;
+        text-align: center;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box"></div>
+    <script>
+      const box = document.querySelector('.box')
+      let i = 1
+      // 鼠标移动函数
+      function mouseMove() {
+        box.innerHTML = ++i
+      }
+      // 节流函数
+      function throttle(fn, time) {
+        // 起始时间
+        let startTime = 0
+        return function () {
+          // 当前时间
+          let now = Date.now()
+          // 当前时间减去起始时间大于500，执行函数（节流）
+          if (now - startTime >= time) {
+            fn()
+            // 起始时间 = 当前时间
+            startTime = now
+          }
+        }
+      }
+      box.addEventListener('mousemove', throttle(mouseMove, 500))
+    </script>
+  </body>
+</html>

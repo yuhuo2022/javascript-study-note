@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bind</title>
+  </head>
+  <body>
+    <button>发送验证码</button>
+    <script>
+      const obj = {
+        name: '渔火'
+      }
+      function fn() {
+        console.log(this)
+      }
+      // 改变this指向，但不调用函数
+      // 返回值是一个函数，但this指向已经改过了
+      const fun = fn.bind(obj)
+      fun()
+
+      document.querySelector('button').addEventListener('click', function () {
+        // 禁用按钮
+        this.disabled = true
+        setTimeout(
+          function () {
+            // 修改this，由window改为按钮
+            this.disabled = false
+          }.bind(this),
+          2000
+        )
+      })
+    </script>
+  </body>
+</html>

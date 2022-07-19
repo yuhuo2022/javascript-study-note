@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSON实现深拷贝</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        name: '渔火',
+        age: 24,
+        hobby: ['吃饭', '睡觉', '打豆豆'],
+        family: {
+          bb: 'bb'
+        }
+      }
+      // 把对象转为字符串,再转为对象
+      const o = JSON.parse(JSON.stringify(obj))
+      o.family.bb = '88'
+      console.log(o)
+      console.log(obj)
+    </script>
+  </body>
+</html>

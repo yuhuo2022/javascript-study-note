@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>call</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        name: '渔火'
+      }
+      function fn(x, y) {
+        console.log(this)
+        console.log(x + y)
+      }
+      // call() 调用函数，改变this指向
+      fn.call(obj, 1, 2)
+    </script>
+  </body>
+</html>

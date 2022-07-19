@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>throw抛出异常</title>
+  </head>
+  <body>
+    <script>
+      function fn(x, y) {
+        if (!x || !y) {
+          throw new Error('没有参数传递进来')
+        }
+        return x + y
+      }
+      fn()
+    </script>
+  </body>
+</html>
